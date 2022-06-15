@@ -1,0 +1,551 @@
+{
+  "nodes": [
+      {
+          "group": 1,
+          "index": 0,
+          "name": "STS-B"
+      },
+      {
+          "group": 1,
+          "index": 1,
+          "name": "MRPC"
+      },
+      {
+          "group": 1,
+          "index": 2,
+          "name": "QNLI"
+      },
+      {
+          "group": 1,
+          "index": 3,
+          "name": "QQP"
+      },
+      {
+          "group": 1,
+          "index": 4,
+          "name": "MNLI"
+      },
+      {
+          "group": 1,
+          "index": 5,
+          "name": "SNLI"
+      },
+      {
+          "group": 1,
+          "index": 6,
+          "name": "WNLI"
+      },
+      {
+          "group": 1,
+          "index": 7,
+          "name": "RTE"
+      },
+      {
+          "group": 1,
+          "index": 8,
+          "name": "SciTail"
+      },
+      {
+          "group": 1,
+          "index": 9,
+          "name": "SST-2"
+      },
+      {
+          "group": 1,
+          "index": 10,
+          "name": "CoLA"
+      },
+      {
+          "group": 2,
+          "index": 11,
+          "name": "ComQA"
+      },
+      {
+          "group": 2,
+          "index": 12,
+          "name": "CQ"
+      },
+      {
+          "group": 2,
+          "index": 13,
+          "name": "BoolQ"
+      },
+      {
+          "group": 2,
+          "index": 14,
+          "name": "DuoRC-p"
+      },
+      {
+          "group": 2,
+          "index": 15,
+          "name": "DuoRC-s"
+      },
+      {
+          "group": 2,
+          "index": 16,
+          "name": "WikiHop"
+      },
+      {
+          "group": 2,
+          "index": 17,
+          "name": "SQuAD-2.0"
+      },
+      {
+          "group": 2,
+          "index": 18,
+          "name": "NewsQA"
+      },
+      {
+          "group": 2,
+          "index": 19,
+          "name": "SQuAD-1.1"
+      },
+      {
+          "group": 2,
+          "index": 20,
+          "name": "DROP"
+      },
+      {
+          "group": 2,
+          "index": 21,
+          "name": "HotpotQA"
+      },
+      {
+          "group": 3,
+          "index": 22,
+          "name": "Chunk"
+      },
+      {
+          "group": 3,
+          "index": 23,
+          "name": "Conj"
+      },
+      {
+          "group": 3,
+          "index": 24,
+          "name": "Parent"
+      },
+      {
+          "group": 3,
+          "index": 25,
+          "name": "CCG"
+      },
+      {
+          "group": 3,
+          "index": 26,
+          "name": "GParent"
+      },
+      {
+          "group": 3,
+          "index": 27,
+          "name": "GGParent"
+      },
+      {
+          "group": 3,
+          "index": 28,
+          "name": "GED"
+      },
+      {
+          "group": 3,
+          "index": 29,
+          "name": "ST"
+      },
+      {
+          "group": 3,
+          "index": 30,
+          "name": "NER"
+      },
+      {
+          "group": 3,
+          "index": 31,
+          "name": "POS-PTB"
+      },
+      {
+          "group": 3,
+          "index": 32,
+          "name": "POS-EWT"
+      }
+  ],
+  "links": [
+      {
+          "source": 0,
+          "target": 1,
+          "value": 1.4
+      },
+      {
+          "source": 0,
+          "target": 2,
+          "value": 0.18
+      },
+      {
+          "source": 1,
+          "target": 2,
+          "value": 0.2
+      },
+      {
+          "source": 2,
+          "target": 3,
+          "value": 0.25
+      },
+      {
+          "source": 2,
+          "target": 4,
+          "value": 0.2
+      },
+      {
+          "source": 2,
+          "target": 5,
+          "value": 0.2
+      },
+      {
+          "source": 3,
+          "target": 4,
+          "value": 0.15
+      },
+      {
+          "source": 3,
+          "target": 5,
+          "value": 0.8
+      },
+      {
+          "source": 4,
+          "target": 8,
+          "value": 0.7
+      },
+      {
+          "source": 4,
+          "target": 9,
+          "value": 0.2
+      },
+      {
+          "source": 4,
+          "target": 5,
+          "value": 1.4
+      },
+      {
+          "source": 5,
+          "target": 8,
+          "value": 0.2
+      },
+      {
+          "source": 5,
+          "target": 9,
+          "value": 0.7
+      },
+      {
+          "source": 5,
+          "target": 7,
+          "value": 0.2
+      },
+      {
+          "source": 5,
+          "target": 6,
+          "value": 0.18
+      },
+      {
+          "source": 6,
+          "target": 7,
+          "value": 0.8
+      },
+      {
+          "source": 4,
+          "target": 7,
+          "value": 0.7
+      },
+      {
+          "source": 10,
+          "target": 28,
+          "value": 0.7
+      },
+      {
+          "source": 10,
+          "target": 27,
+          "value": 0.18
+      },
+      {
+          "source": 29,
+          "target": 32,
+          "value": 0.2
+      },
+      {
+          "source": 28,
+          "target": 18,
+          "value": 0.2
+      },
+      {
+          "source": 29,
+          "target": 30,
+          "value": 0.7
+      },
+      {
+          "source": 29,
+          "target": 31,
+          "value": 1.06
+      },
+      {
+          "source": 30,
+          "target": 32,
+          "value": 0.15
+      },
+      {
+          "source": 30,
+          "target": 31,
+          "value": 0.2
+      },
+      {
+          "source": 31,
+          "target": 32,
+          "value": 1.4
+      },
+      {
+          "source": 25,
+          "target": 31,
+          "value": 0.15
+      },
+      {
+          "source": 25,
+          "target": 29,
+          "value": 0.2
+      },
+      {
+          "source": 19,
+          "target": 29,
+          "value": 0.15
+      },
+      {
+          "source": 19,
+          "target": 28,
+          "value": 0.7
+      },
+      {
+          "source": 19,
+          "target": 23,
+          "value": 0.7
+      },
+      {
+          "source": 25,
+          "target": 22,
+          "value": 0.2
+      },
+      {
+          "source": 25,
+          "target": 23,
+          "value": 0.2
+      },
+      {
+          "source": 11,
+          "target": 19,
+          "value": 0.2
+      },
+      {
+          "source": 11,
+          "target": 18,
+          "value": 0.7
+      },
+      {
+          "source": 15,
+          "target": 14,
+          "value": 0.9
+      },
+      {
+          "source": 19,
+          "target": 22,
+          "value": 0.7
+      },
+      {
+          "source": 24,
+          "target": 27,
+          "value": 0.18
+      },
+      {
+          "source": 5,
+          "target": 18,
+          "value": 0.2
+      },
+      {
+          "source": 4,
+          "target": 19,
+          "value": 0.15
+      },
+      {
+          "source": 4,
+          "target": 18,
+          "value": 0.2
+      },
+      {
+          "source": 17,
+          "target": 21,
+          "value": 0.15
+      },
+      {
+          "source": 27,
+          "target": 25,
+          "value": 1.06
+      },
+      {
+          "source": 19,
+          "target": 24,
+          "value": 0.2
+      },
+      {
+          "source": 24,
+          "target": 25,
+          "value": 0.9
+      },
+      {
+          "source": 27,
+          "target": 26,
+          "value": 1.4
+      },
+      {
+          "source": 26,
+          "target": 25,
+          "value": 0.35
+      },
+      {
+          "source": 19,
+          "target": 27,
+          "value": 0.15
+      },
+      {
+          "source": 19,
+          "target": 26,
+          "value": 0.15
+      },
+      {
+          "source": 19,
+          "target": 25,
+          "value": 0.15
+      },
+      {
+          "source": 19,
+          "target": 13,
+          "value": 0.7
+      },
+      {
+          "source": 18,
+          "target": 13,
+          "value": 0.18
+      },
+      {
+          "source": 15,
+          "target": 19,
+          "value": 0.18
+      },
+      {
+          "source": 19,
+          "target": 12,
+          "value": 0.7
+      },
+      {
+          "source": 2,
+          "target": 18,
+          "value": 0.2
+      },
+      {
+          "source": 2,
+          "target": 17,
+          "value": 0.8
+      },
+      {
+          "source": 15,
+          "target": 17,
+          "value": 0.2
+      },
+      {
+          "source": 18,
+          "target": 12,
+          "value": 0.2
+      },
+      {
+          "source": 21,
+          "target": 20,
+          "value": 0.18
+      },
+      {
+          "source": 17,
+          "target": 20,
+          "value": 0.2
+      },
+      {
+          "source": 17,
+          "target": 18,
+          "value": 0.25
+      },
+      {
+          "source": 17,
+          "target": 19,
+          "value": 0.9
+      },
+      {
+          "source": 19,
+          "target": 21,
+          "value": 0.25
+      },
+      {
+          "source": 19,
+          "target": 20,
+          "value": 1.4
+      },
+      {
+          "source": 18,
+          "target": 20,
+          "value": 0.3
+      },
+      {
+          "source": 18,
+          "target": 21,
+          "value": 1.06
+      },
+      {
+          "source": 16,
+          "target": 21,
+          "value": 0.15
+      },
+      {
+          "source": 16,
+          "target": 19,
+          "value": 0.18
+      },
+      {
+          "source": 18,
+          "target": 14,
+          "value": 0.25
+      },
+      {
+          "source": 15,
+          "target": 19,
+          "value": 0.9
+      },
+      {
+          "source": 15,
+          "target": 18,
+          "value": 0.25
+      },
+      {
+          "source": 18,
+          "target": 19,
+          "value": 1.06
+      },
+      {
+          "source": 14,
+          "target": 19,
+          "value": 0.18
+      },
+      {
+          "source": 16,
+          "target": 14,
+          "value": 0.18
+      },
+      {
+          "source": 16,
+          "target": 18,
+          "value": 0.8
+      },
+      {
+          "source": 15,
+          "target": 16,
+          "value": 10
+      }
+  ]
+}
