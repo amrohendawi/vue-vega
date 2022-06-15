@@ -10,8 +10,10 @@
       min="0"
       max="3"
       v-model="epoch"
+      @change="epochChange"
     />
   </div>
+  <div>{{ epoch }}</div>
 </template>
 
 <script>
@@ -40,31 +42,32 @@ export default {
       // });
       // group data by epoch
       this.data = d3.group(data, (d) => d.epoch);
-      // console.log(this.data);
-      const chart = Plot.plot({
-        x: {
-          nice: true,
-        },
-        y: this.data.get(this.epoch).x,
-        fy: this.data.get(this.epoch).y,
-        color: {
-          type: "categorical",
-        },
-        facet: {
-          data: this.data.get(this.epoch),
-          x: "layerx",
-          y: "layery",
-        },
-        marks: [
-          Plot.frame(),
-          Plot.dot(this.data.get(this.epoch), {
-            x: "x",
-            y: "y",
-            stroke: "label",
-          }),
-        ],
-      });
-      document.getElementById("chart").appendChild(chart);
+      console.log(this.data);
+      document.getElementById("chart").appendChild(
+        Plot.plot({
+          x: {
+            nice: true,
+          },
+          y: this.data.get(this.epoch).x,
+          fy: this.data.get(this.epoch).y,
+          color: {
+            type: "categorical",
+          },
+          facet: {
+            data: this.data.get(this.epoch),
+            x: "layerx",
+            y: "layery",
+          },
+          marks: [
+            Plot.frame(),
+            Plot.dot(this.data.get(this.epoch), {
+              x: "x",
+              y: "y",
+              stroke: "label",
+            }),
+          ],
+        })
+      );
     });
   },
 };

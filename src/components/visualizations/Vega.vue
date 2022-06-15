@@ -10,13 +10,12 @@ export default {
   async mounted() {
     var def = {
       $schema: "https://vega.github.io/schema/vega/v5.json",
-      description: "A small multiples view of tsne xs by layer and y.",
-      width: 200,
+      description: "The Trellis display",
+      background: "white",
       padding: 5,
-
       data: [
         {
-          name: "tsne",
+          name: "source_0",
           url: "tsne.json",
           transform: [
             {
@@ -26,100 +25,64 @@ export default {
           ],
         },
       ],
-
       signals: [
-        { name: "cellHeight", value: 200 },
-        { name: "offset", value: 12 },
-        { name: "height", update: "bandspace(domain('yscale').length, 1, 0.5) * offset" },
+        { name: "trellis_barley_child_width", value: 200 },
+        { name: "trellis_barley_y_step", value: 100 },
+        {
+          name: "trellis_barley_child_height",
+          update:
+            "bandspace(domain('trellis_barley_y').length, 1, 0.5) * trellis_barley_y_step",
+        },
         {
           name: "epoch",
           value: 0,
           bind: { input: "range", min: 0, max: 3, step: 1 },
         },
       ],
-
       layout: { padding: 20, bounds: "full", align: "all", columns: 4 },
-
       marks: [
         {
-          name: "layer",
+          name: "trellis_barley_cell",
           type: "group",
-
+          title: {
+            text: {
+              signal:
+                'isValid(parent["layer"]) ? parent["layer"] : ""+parent["layer"]',
+            },
+            style: "guide-label",
+            frame: "group",
+            offset: 10,
+          },
+          style: "cell",
           from: {
             facet: {
-              name: "layers",
-              data: "tsne",
+              name: "trellis_barley_facet",
+              data: "source_0",
               groupby: ["layer"],
             },
           },
-
           encode: {
             update: {
-              // y: {
-              //   scale: "gscale",
-              //   field: "layer",
-              //   offset: { signal: "offset" },
-              // },
-              height: { signal: "cellHeight" },
-              width: { signal: "width" },
-              stroke: { value: "#ccc" },
+              width: { signal: "trellis_barley_child_width" },
+              height: { signal: "trellis_barley_child_height" },
             },
           },
-
           marks: [
             {
               type: "symbol",
-              from: { data: "layers" },
+              style: ["point"],
+              from: { data: "trellis_barley_facet" },
               encode: {
                 update: {
-                  x: { scale: "xscale", field: "x" },
-                  y: { scale: "yscale", field: "y" },
-                  stroke: { scale: "cscale", field: "label" },
-                  // strokeWidth: { value: 2 },
-                  // size: { value: 50 },
+                  stroke: { scale: "trellis_barley_color", field: "label" },
+                  x: { scale: "trellis_barley_x", field: "x" },
+                  y: { scale: "trellis_barley_y", field: "y" },
                 },
               },
             },
           ],
-
-          scales: [
-            {
-              name: "yscale",
-              type: "point",
-              range: [0, { signal: "cellHeight" }],
-              padding: 1,
-              round: true,
-              domain: {
-                data: "tsne",
-                field: "y",
-                sort: {
-                  field: "x",
-                  op: "median",
-                  order: "descending",
-                },
-              },
-            },
-          ],
-        },
-
-        {
-          type: "text",
-          from: { data: "layer" },
-          encode: {
-            enter: {
-              x: { field: "width", mult: 0.5 },
-              y: { field: "y" },
-              fontSize: { value: 11 },
-              fontWeight: { value: "bold" },
-              text: { field: "datum.layer" },
-              align: { value: "center" },
-              baseline: { value: "bottom" },
-              fill: { value: "#000" },
-            },
-          },
         },
       ],
-      
       spec: {
         selection: {
           slider: {
@@ -131,49 +94,46 @@ export default {
           },
         },
       },
-
       scales: [
         {
-          name: "gscale",
+          name: "trellis_barley_x",
           type: "linear",
-          range: "height",
+          domain: { data: "source_0", field: "x" },
+          range: [0, { signal: "trellis_barley_child_width" }],
           nice: true,
-          round: true,
-          domain: { data: "tsne", field: "y" },
+          zero: true,
         },
         {
-          name: "xscale",
+          name: "trellis_barley_y",
           type: "linear",
-          range: "width",
+          domain: { data: "source_0", field: "y" },
+          range: [0, { signal: "trellis_barley_y_step" }],
           nice: true,
-          round: true,
-          domain: { data: "tsne", field: "x" },
+          zero: true,
         },
         {
-          name: "cscale",
+          name: "trellis_barley_color",
           type: "ordinal",
+          domain: { data: "source_0", field: "label", sort: true },
           range: "category",
-          domain: { data: "tsne", field: "label" },
         },
       ],
-
       legends: [
         {
-          stroke: "cscale",
+          stroke: "trellis_barley_color",
+          symbolType: "circle",
           title: "label",
-          padding: 4,
           encode: {
             symbols: {
-              enter: {
-                strokeWidth: { value: 2 },
-                size: { value: 50 },
+              update: {
+                fill: { value: "transparent" },
+                opacity: { value: 0.7 },
               },
             },
           },
         },
       ],
-
-
+      config: {},
     };
     await embed("#viz2", def, { actions: false });
   },
