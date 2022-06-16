@@ -19,13 +19,13 @@ body {
 }
 
 .toc {
-  position: fixed;
-  /* left: 3em; */
+  position: sticky;
+  left: 3em;
   top: 5em;
   padding: 1em;
-  /* width: 14em; */
+  width: 14em;
   line-height: 2;
-  /* max-width: 100%; */
+  max-width: 100%;
 }
 .toc ul {
   list-style: none;

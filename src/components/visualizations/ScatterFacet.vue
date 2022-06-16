@@ -30,42 +30,47 @@ export default {
       epoch: 0,
     };
   },
+  methods: {
+    customTransform(data, facets) {
+      return {
+        data,
+        facets: facets.map((facet) => {
+          return facet.filter((i) => {
+            return /, MI /.test(data[i].division);
+          });
+        }),
+      };
+    },
+  },
   mounted() {
     d3.json("tsne.json", d3.autoType).then((data) => {
-      // add a new column to the data called layerx. this column is equal to the layer % 4
-      // data.forEach((d) => {
-      //   d.layerx = d.layer % 4;
-      // });
-      // // Add layery to the data. This column is equal to the layer / 4
-      // data.forEach((d) => {
-      //   d.layery = Math.floor(d.layer / 4);
-      // });
-      // group data by epoch
-      this.data = d3.group(data, (d) => d.epoch);
-      console.log(this.data);
+      this.data = data;
+      console.log(data);
+
       document.getElementById("chart").appendChild(
         Plot.plot({
           x: {
             nice: true,
           },
-          y: this.data.get(this.epoch).x,
-          fy: this.data.get(this.epoch).y,
+          y: this.data.x,
+          fy: this.data.y,
           color: {
             type: "categorical",
           },
           facet: {
-            data: this.data.get(this.epoch),
+            data: this.data,
             x: "layerx",
             y: "layery",
           },
           marks: [
             Plot.frame(),
-            Plot.dot(this.data.get(this.epoch), {
+            Plot.dot(this.data, {
               x: "x",
               y: "y",
               stroke: "label",
             }),
           ],
+          filter: (d) => d.epoch === this.epoch,
         })
       );
     });

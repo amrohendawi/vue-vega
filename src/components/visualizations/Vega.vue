@@ -12,6 +12,7 @@ export default {
       $schema: "https://vega.github.io/schema/vega/v5.json",
       description: "The Trellis display",
       background: "white",
+      // autosize: { type: "fit", contains: "padding" },
       padding: 5,
       data: [
         {
@@ -26,12 +27,12 @@ export default {
         },
       ],
       signals: [
-        { name: "trellis_barley_child_width", value: 200 },
+        { name: "trellis_barley_child_width", value: 100 },
         { name: "trellis_barley_y_step", value: 100 },
         {
           name: "trellis_barley_child_height",
           update:
-            "bandspace(domain('trellis_barley_y').length, 1, 0.5) * trellis_barley_y_step",
+            "bandspace(domain('trellis_barley_y').length, 10, 0.1) * trellis_barley_y_step",
         },
         {
           name: "epoch",
@@ -39,7 +40,7 @@ export default {
           bind: { input: "range", min: 0, max: 3, step: 1 },
         },
       ],
-      layout: { padding: 20, bounds: "full", align: "all", columns: 4 },
+      layout: { padding: 10, bounds: "full", align: "all", columns: 4 },
       marks: [
         {
           name: "trellis_barley_cell",
@@ -47,7 +48,7 @@ export default {
           title: {
             text: {
               signal:
-                'isValid(parent["layer"]) ? parent["layer"] : ""+parent["layer"]',
+                'isValid(parent["layer"]) ? "layer "+parent["layer"] : ""+parent["layer"]',
             },
             style: "guide-label",
             frame: "group",
@@ -117,17 +118,22 @@ export default {
           domain: { data: "source_0", field: "label", sort: true },
           range: "category",
         },
+        {
+          name: "color",
+          type: "ordinal",
+          domain: { data: "source_0", field: "label", sort: true },
+          range: "category",
+        },
       ],
       legends: [
         {
-          stroke: "trellis_barley_color",
           symbolType: "circle",
           title: "label",
+          fill: "color",
           encode: {
             symbols: {
               update: {
-                fill: { value: "transparent" },
-                opacity: { value: 0.7 },
+                opacity: { value: 0.8 },
               },
             },
           },
