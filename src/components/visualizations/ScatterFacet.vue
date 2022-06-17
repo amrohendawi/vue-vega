@@ -7,19 +7,6 @@ import embed from "vega-embed";
 
 export default {
   name: "ScatterFacet",
-  methods: {
-    customTransform(data, facets) {
-      return {
-        data,
-        facets: facets.map((facet) => {
-          return facet.filter((i) => {
-            return /, MI /.test(data[i].division);
-          });
-        }),
-      };
-    },
-  },
-
   async mounted() {
     var def = {
       $schema: "https://vega.github.io/schema/vega/v5.json",
