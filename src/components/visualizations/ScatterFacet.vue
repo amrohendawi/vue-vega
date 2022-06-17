@@ -1,35 +1,12 @@
 <template>
-  <div>
-    <div ref="chart"></div>
-    <div id="chart"></div>
-    <!-- Add a slider -->
-    <input
-      type="range"
-      name="epochSlider"
-      id="epochSlider"
-      min="0"
-      max="3"
-      v-model="epoch"
-      @change="epochChange"
-    />
-  </div>
-  <div>{{ epoch }}</div>
+  <div id="viz2"></div>
 </template>
 
 <script>
-import * as d3 from "d3";
-import * as Plot from "@observablehq/plot";
-// import * as Inputs from "@observablehq/inputs";
+import embed from "vega-embed";
 
 export default {
   name: "ScatterFacet",
-  data() {
-    return {
-      chart: null,
-      data: null,
-      epoch: 0,
-    };
-  },
   methods: {
     customTransform(data, facets) {
       return {
@@ -42,40 +19,142 @@ export default {
       };
     },
   },
-  mounted() {
-    d3.json("tsne.json", d3.autoType).then((data) => {
-      this.data = data;
-      console.log(data);
 
-      document.getElementById("chart").appendChild(
-        Plot.plot({
-          x: {
-            nice: true,
+  async mounted() {
+    var def = {
+      $schema: "https://vega.github.io/schema/vega/v5.json",
+      description: "The Trellis display",
+      background: "white",
+      padding: 5,
+      data: [
+        {
+          name: "source_0",
+          url: "tsne_bert_base_cased_sentiment_multi.csv",
+          format: { type: "dsv", delimiter: "," },
+          transform: [
+            {
+              type: "filter",
+              expr: "datum.epoch == epoch",
+            },
+          ],
+        },
+      ],
+      signals: [
+        { name: "tsne_child_width", value: 120 },
+        { name: "tsne_y_step", value: 120 },
+        {
+          name: "tsne_child_height",
+          update: "bandspace(domain('tsne_y').length, 10, 0) * tsne_y_step",
+        },
+        {
+          name: "epoch",
+          value: 0,
+          bind: { input: "range", min: 0, max: 3, step: 1 },
+        },
+      ],
+      layout: { padding: 5, bounds: "full", align: "all", columns: 4 },
+      marks: [
+        {
+          name: "tsne_cell",
+          type: "group",
+          title: {
+            text: {
+              signal:
+                'isValid(parent["layer"]) ? "layer "+parent["layer"] : ""+parent["layer"]',
+            },
+            style: "guide-label",
           },
-          y: this.data.x,
-          fy: this.data.y,
-          color: {
-            type: "categorical",
+          style: "cell",
+          from: {
+            facet: {
+              name: "tsne_facet",
+              data: "source_0",
+              groupby: ["layer"],
+            },
           },
-          facet: {
-            data: this.data,
-            x: "layerx",
-            y: "layery",
+          encode: {
+            update: {
+              width: { signal: "tsne_child_width" },
+              height: { signal: "tsne_child_height" },
+            },
           },
           marks: [
-            Plot.frame(),
-            Plot.dot(this.data, {
-              x: "x",
-              y: "y",
-              stroke: "label",
-            }),
+            {
+              type: "symbol",
+              style: ["point"],
+              from: { data: "tsne_facet" },
+              encode: {
+                update: {
+                  stroke: { scale: "label_color", field: "label" },
+                  x: { scale: "tsne_x", field: "x" },
+                  y: { scale: "tsne_y", field: "y" },
+                },
+              },
+            },
           ],
-          filter: (d) => d.epoch === this.epoch,
-        })
-      );
-    });
+        },
+      ],
+      spec: {
+        selection: {
+          slider: {
+            type: "single",
+            fields: ["epoch"],
+            bind: {
+              epoch: { input: "range", min: 0, max: 4, step: 1 },
+            },
+          },
+        },
+      },
+      scales: [
+        {
+          name: "tsne_x",
+          type: "linear",
+          domain: { data: "source_0", field: "x" },
+          range: [0, { signal: "tsne_child_width" }],
+          nice: true,
+          zero: true,
+        },
+        {
+          name: "tsne_y",
+          type: "linear",
+          domain: { data: "source_0", field: "y" },
+          range: [0, { signal: "tsne_y_step" }],
+          nice: true,
+          zero: true,
+        },
+        {
+          name: "label_color",
+          type: "ordinal",
+          domain: { data: "source_0", field: "label", sort: true },
+          range: "category",
+        },
+        {
+          name: "color",
+          type: "ordinal",
+          domain: { data: "source_0", field: "label", sort: true },
+          range: "category",
+        },
+      ],
+      legends: [
+        {
+          symbolType: "circle",
+          title: "label",
+          fill: "color",
+          encode: {
+            symbols: {
+              update: {
+                opacity: { value: 0.8 },
+              },
+            },
+          },
+        },
+      ],
+      config: {},
+    };
+    await embed("#viz2", def, { actions: false });
   },
 };
 </script>
 
-<style></style>
+<style>
+</style>

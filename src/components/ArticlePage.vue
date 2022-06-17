@@ -71,7 +71,6 @@
             state-of-the-art results in numerous benchmarks and is still a
             must-have baseline.
           </p>
-          <Vega />
           <p>
             BERT is a deep learning model that has been shown to be effective
             for a range of natural language understanding tasks. However, it is
@@ -219,14 +218,12 @@
 <script>
 import "@/assets/style.css";
 import ScatterFacet from "./visualizations/ScatterFacet.vue";
-import Vega from "./visualizations/Vega.vue";
 import ConnectedGraph from "./visualizations/ConnectedGraph.vue";
 import Plot from "./visualizations/Plot.vue";
 
 export default {
   name: "ArticlePage",
   components: {
-    Vega,
     ConnectedGraph,
     ScatterFacet,
     Plot,
