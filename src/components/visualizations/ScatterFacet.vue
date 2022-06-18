@@ -125,15 +125,8 @@ export default {
       legends: [
         {
           symbolType: "circle",
-          title: "label",
+          title: "Label",
           fill: "color",
-          encode: {
-            symbols: {
-              update: {
-                opacity: { value: 0.8 },
-              },
-            },
-          },
         },
       ],
       config: {},
