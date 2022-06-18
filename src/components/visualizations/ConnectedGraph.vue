@@ -13,7 +13,7 @@ export default {
       $schema: "https://vega.github.io/schema/vega/v5.json",
       description:
         "A node-link diagram with force-directed layout, depicting graph.",
-      width: 500,
+      width: 800,
       height: 400,
       padding: 0,
       autosize: "none",
@@ -28,7 +28,7 @@ export default {
         },
         {
           name: "nodeRadius",
-          value: 8,
+          value: 12,
           bind: {
             input: "range",
             min: 1,
@@ -38,7 +38,7 @@ export default {
         },
         {
           name: "nodeCharge",
-          value: -30,
+          value: -20,
           bind: {
             input: "range",
             min: -100,
@@ -48,7 +48,7 @@ export default {
         },
         {
           name: "linkDistance",
-          value: 30,
+          value: 40,
           bind: {
             input: "range",
             min: 5,
@@ -134,9 +134,7 @@ export default {
             data: "node-data",
             field: "group",
           },
-          range: {
-            scheme: "category20",
-          },
+          range: "category",
         },
       ],
       legends: [
@@ -145,7 +143,8 @@ export default {
           orient: "top-right",
           type: "symbol",
           fill: "color",
-          // values: ["a", "b", "c"],
+          labelFontSize: "12",
+          titleFontSize: "16",
         },
       ],
       marks: [
@@ -242,11 +241,10 @@ export default {
           encode: {
             update: {
               stroke: {
-                value: "#ccc",
+                value: "#aaa",
               },
-              strokeWidth: {
-                value: 0.5,
-              },
+              strokeWidth: { signal: "datum.value * 2" },
+              strokeCap: { value: "round" },
             },
           },
           transform: [
@@ -255,7 +253,7 @@ export default {
               require: {
                 signal: "force",
               },
-              shape: "line",
+              shape: "diagonal",
               sourceX: "datum.source.x",
               sourceY: "datum.source.y",
               targetX: "datum.target.x",

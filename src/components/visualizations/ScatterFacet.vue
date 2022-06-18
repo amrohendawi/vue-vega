@@ -27,7 +27,7 @@ export default {
         },
       ],
       signals: [
-        { name: "tsne_child_width", value: 120 },
+        { name: "tsne_child_width", value: 130 },
         { name: "tsne_y_step", value: 120 },
         {
           name: "tsne_child_height",
