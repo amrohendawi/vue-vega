@@ -27,8 +27,8 @@ export default {
         },
       ],
       signals: [
-        { name: "tsne_child_width", value: 130 },
-        { name: "tsne_y_step", value: 120 },
+        { name: "tsne_child_width", value: 200 },
+        { name: "tsne_y_step", value: 200 },
         {
           name: "tsne_child_height",
           update: "bandspace(domain('tsne_y').length, 10, 0) * tsne_y_step",
@@ -127,6 +127,8 @@ export default {
           symbolType: "circle",
           title: "Label",
           fill: "color",
+          titleFontSize: "16",
+          labelFontSize: "12",
         },
       ],
       config: {},
