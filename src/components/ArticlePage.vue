@@ -15,11 +15,11 @@
             </ul>
           </li>
           <li>
-            <a href="#css">CSS Editor</a>
+            <a href="#css">Conclusion</a>
             <ul>
               <li><a href="#css-fonts">Custom Fonts</a></li>
               <li><a href="#css-developer-mode">Developer Mode</a></li>
-              <li><a href="#css-examples">Examples</a></li>
+              <li><a href="#css-references">References</a></li>
             </ul>
           </li>
         </ul>
@@ -165,16 +165,11 @@
         <section>
           <div id="css">
             <h2>
-              CSS Editor
-              <a href="/pricing" class="header-secondary-text"
-                >(Requires Pro)</a
-              >
+              Conclusion
             </h2>
             <p>
-              The CSS editor lets you author custom styles for your presentation
-              with a real-time preview of the result. It's available as an
-              option inside of the Style panel of the presentation editor.
-            </p>
+              Fine-tuning can improve a model's transferability, although the extent of the improvement may vary depending on the task and domain.
+              Other factors like the dataset and the model's size  can also affect transferability.            </p>
             <p>
               The editor preprocesses styles using
               <a href="http://lesscss.org/">LESS</a>, though you're free to
@@ -197,17 +192,26 @@
             </p>
           </div>
           <div id="css-developer-mode">
-            <h3>Developer Mode</h3>
+            <h3>Directions and Further Research</h3>
             <p>
-              If you turn on the <a href="#dev">developer mode</a> you can also
-              add custom classes to any focused element. This is a convenient
-              way to easily apply your CSS to specific elements.
+              There is still much research that needs to be done in order to
+              fully understand how fine-tuning affects BERT's transferability.
+              In particular, it would be interesting to compare the
+              transferability of models that are fine-tuned on different tasks
+              and domains. Additionally, it would be helpful to investigate how
+              different amounts of fine-tuning affect transferability.
             </p>
           </div>
 
-          <div id="css-examples">
-            <h3>Examples</h3>
-            <pre class="code-block" data-highlight-theme="github-gist"></pre>
+          <div id="css-references">
+            <h3>References</h3>
+            <p>
+              1. https://arxiv.org/pdf/1906.01083.pdf 2.
+              https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
+              3. https://huggingface.co/transformers/pretrained_models.html#bert
+              4.
+              https://medium.com/@jonathan_hui/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
+            </p>
           </div>
         </section>
       </article>
