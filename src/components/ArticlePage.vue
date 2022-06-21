@@ -109,13 +109,40 @@
           <div id="dev-edit-html">
             <h3>Fine-tuning</h3>
             <p>
-              The per-slide HTML editor can be accessed from the slide options
-              area. It gives you raw access to the current slide's HTML,
-              allowing you to change anything you like. Note that some elements,
-              such as &lt;script&gt; and &lt;link&gt;, are not allowed for
-              security reasons.
+              When a model is fine-tuned on a specific task, its transferability
+              to other tasks is usually enhanced. This is because the model has
+              been specifically optimized for the task at hand, and so is better
+              able to generalize to other tasks. There is some evidence that
+              fine-tuning can also improve a model's ability to transfer to
+              other domains. For example, a model that is fine-tuned on a
+              medical domain may be able to better transfer to other medical
+              domains. However, it is not clear how much of an improvement
+              fine-tuning provides in this case.
             </p>
             <ScatterFacet />
+            <p>
+              The results of the visualization above hold two main observations:
+            </p>
+            <ul>
+              <li>
+                The data points of different classes are highly mixed, and no
+                pattern or discrimination boundaries are yet developed at the
+                beginning of the training loop. As the training progresses, an
+                apparent clustering of the different classes starts to establish
+                itself in some layers.
+              </li>
+              <li>
+                The pattern and clustering of the different classes are
+                primarily evident in higher layers of the model.
+              </li>
+            </ul>
+            <p>
+              The previous observations show that the pre-trained Bert model has
+              a low or non-existing understanding of unseen data, but after a
+              proper fine-tuning procedure, it can generalize and adapt to new
+              domains effectively. Furthermore, the observation shows which
+              layers learn and hold the most discriminating features.
+            </p>
           </div>
 
           <div id="dev-element-classes">
@@ -164,12 +191,13 @@
 
         <section>
           <div id="css">
-            <h2>
-              Conclusion
-            </h2>
+            <h2>Conclusion</h2>
             <p>
-              Fine-tuning can improve a model's transferability, although the extent of the improvement may vary depending on the task and domain.
-              Other factors like the dataset and the model's size  can also affect transferability.            </p>
+              Fine-tuning can improve a model's transferability, although the
+              extent of the improvement may vary depending on the task and
+              domain. Other factors like the dataset and the model's size can
+              also affect transferability.
+            </p>
             <p>
               The editor preprocesses styles using
               <a href="http://lesscss.org/">LESS</a>, though you're free to
